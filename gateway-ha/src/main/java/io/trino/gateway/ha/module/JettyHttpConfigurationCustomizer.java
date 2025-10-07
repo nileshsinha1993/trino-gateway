@@ -16,8 +16,6 @@ package io.trino.gateway.ha.module;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
 import io.airlift.http.server.HttpServerInfo;
 import io.airlift.log.Logger;
 import io.trino.gateway.ha.config.HaGatewayConfiguration;
@@ -146,4 +144,3 @@ public class JettyHttpConfigurationCustomizer
         }
     }
 }
-
