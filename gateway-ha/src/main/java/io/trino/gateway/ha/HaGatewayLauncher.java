@@ -33,6 +33,7 @@ import io.airlift.units.Duration;
 import io.trino.gateway.baseapp.BaseApp;
 import io.trino.gateway.ha.config.HaGatewayConfiguration;
 import io.trino.gateway.ha.module.HaGatewayProviderModule;
+import io.trino.gateway.ha.module.JettyHttpConfigurationCustomizer;
 import io.trino.gateway.ha.persistence.FlywayMigration;
 import org.weakref.jmx.guice.MBeanModule;
 
@@ -58,6 +59,7 @@ public class HaGatewayLauncher
         modules.add(
                 new NodeModule(),
                 new HttpServerModule(),
+                new JettyHttpConfigurationCustomizer(configuration),
                 new JmxModule(),
                 new JmxHttpModule(),
                 new JmxOpenMetricsModule(),
