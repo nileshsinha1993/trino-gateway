@@ -23,6 +23,8 @@ import jakarta.annotation.PostConstruct;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.Server;
 
+import java.util.Locale;
+
 /**
  * Module and customizer to configure Jetty's HTTP server with larger header buffers.
  * This addresses the "431 Request Header Fields Too Large" error by directly
@@ -35,11 +37,8 @@ public class JettyHttpConfigurationCustomizer
     private static final int DEFAULT_REQUEST_HEADER_SIZE = 32 * 1024 * 1024; // 32MB
     private static final int DEFAULT_RESPONSE_HEADER_SIZE = 32 * 1024 * 1024; // 32MB
 
-    private final HaGatewayConfiguration configuration;
-
-    public JettyHttpConfigurationCustomizer(HaGatewayConfiguration configuration)
+    public JettyHttpConfigurationCustomizer()
     {
-        this.configuration = configuration;
     }
 
     @Override
@@ -110,7 +109,7 @@ public class JettyHttpConfigurationCustomizer
 
             try {
                 // Parse values like "32MB", "64kB", "1GB", etc.
-                value = value.trim().toUpperCase();
+                value = value.trim().toUpperCase(Locale.ROOT);
                 long multiplier = 1;
 
                 if (value.endsWith("GB")) {

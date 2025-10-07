@@ -59,7 +59,7 @@ public class HaGatewayLauncher
         modules.add(
                 new NodeModule(),
                 new HttpServerModule(),
-                new JettyHttpConfigurationCustomizer(configuration),
+                new JettyHttpConfigurationCustomizer(),
                 new JmxModule(),
                 new JmxHttpModule(),
                 new JmxOpenMetricsModule(),
